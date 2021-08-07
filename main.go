@@ -19,7 +19,7 @@ func newCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:          "kubectl-secret-data",
-		Short:        "A better kubectl for finding decoded secret data",
+		Short:        "A kubectl plugin for finding decoded secret data.",
 		SilenceUsage: true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			name := ""
