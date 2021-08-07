@@ -29,9 +29,9 @@ func run(ctx context.Context, name string, opt options) error {
 				secrets = append(secrets, s)
 			}
 		}
-		return printSecrets(secrets)
+		return printSecrets(secrets, opt.Output)
 	}
-	return printSecrets(ss)
+	return printSecrets(ss, opt.Output)
 }
 
 func findSecrets(ctx context.Context, name string, opt options) ([]v1.Secret, error) {
@@ -132,7 +132,7 @@ func getAllNamespaces(ctx context.Context) ([]v1.Namespace, error) {
 	return nl.Items, nil
 }
 
-func printSecrets(ss []v1.Secret) error {
+func printSecrets(ss []v1.Secret, output string) error {
 	m := make(map[string][]interface{}, len(ss))
 	for _, s := range ss {
 		data := make(map[string]string)
@@ -143,9 +143,19 @@ func printSecrets(ss []v1.Secret) error {
 			s.Name: data,
 		})
 	}
-	b, err := json.MarshalIndent(m, "", "    ")
-	if err != nil {
-		return err
+	var b []byte
+	var err error
+	switch output {
+	case "json":
+		b, err = json.MarshalIndent(m, "", "    ")
+		if err != nil {
+			return err
+		}
+	case "yaml":
+		b, err = yaml.Marshal(m)
+		if err != nil {
+			return err
+		}
 	}
 	fmt.Printf("%s\n", string(b))
 	return nil
