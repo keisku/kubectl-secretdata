@@ -191,8 +191,6 @@ kubectl-secret-data -n ns-1 -E "^super-.*"
 
 See the [release](https://github.com/kskumgk63/kubectl-secret-data/releases) page for the full list of pre-built assets.
 
-The commands here show `amd64` versions, `386` versions are available in the releases page.
-
 #### Linux
 
 ```bash
