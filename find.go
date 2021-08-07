@@ -133,13 +133,15 @@ func getAllNamespaces(ctx context.Context) ([]v1.Namespace, error) {
 }
 
 func printSecrets(ss []v1.Secret) error {
-	m := make(map[string]interface{}, len(ss))
+	m := make(map[string][]interface{}, len(ss))
 	for _, s := range ss {
 		data := make(map[string]string)
 		for k, v := range s.Data {
 			data[k] = string(v)
 		}
-		m[s.Name] = data
+		m[s.Namespace] = append(m[s.Namespace], map[string]map[string]string{
+			s.Name: data,
+		})
 	}
 	b, err := json.MarshalIndent(m, "", "    ")
 	if err != nil {
