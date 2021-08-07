@@ -4,7 +4,7 @@
 
 This is a `kubectl` plugin for finding decoded secret data.
 Since `kubectl` only outputs base64-encoded secrets, it makes it difficult to check the secret value.
-This plugin helps finding a decoded secret data you want by variety of options.
+It helps finding a decoded secret data you want with productive search flags.
 
 ## Usage
 
@@ -15,14 +15,15 @@ Usage:
   kubectl-secret-data [flags]
 
 Flags:
-  -A, --all-namespace       If present, find secrets from all namespaces
-      --cluster string      The name of the kubeconfig context to use
-      --context string      The name of the kubeconfig cluster to use
-  -h, --help                help for kubectl-secret-data
-      --kubeconfig string   Path to the kubeconfig file to use for CLI requests
-  -n, --namespace string    The namespaces where secrets exist. You can set multiple namespaces separated by ","
-  -o, --output string       The format of the result (default "yaml")
-  -E, --regex string        The regular expression of secret name
+  -A, --all-namespace             If present, find secrets from all namespaces
+      --cluster string            The name of the kubeconfig context to use
+      --context string            The name of the kubeconfig cluster to use
+  -h, --help                      help for kubectl-secret-data
+      --kubeconfig string         Path to the kubeconfig file to use for CLI requests
+  -m, --multi-namespaces string   The multi namespacess separated by "," where secrets exist.
+  -n, --namespace string          The namespaces where secrets exist
+  -o, --output string             The format of the result (default "yaml")
+  -E, --regex string              The regular expression of secret name
 ```
 
 ### Example
@@ -102,7 +103,9 @@ List all secret data in `ns-1` and `ns-2` in `json`.
 **You can specify multiple namespace.**
 
 ```shell
-kubectl-secret-data -n ns-1,ns-2 -o json
+kubectl-secret-data -m ns-1,ns-2 -o json
+#OR
+kubectl-secret-data --multi-namespaces ns-1,ns-2 -o json
 ```
 
 <details>
@@ -155,7 +158,7 @@ kubectl-secret-data -n ns-1,ns-2 -o json
 
 </details>
 
-List all secret data in `ns-1` in `json` with a regex.
+List secret data by matching regex in `ns-1` in `json`.
 
 ```shell
 kubectl-secret-data -n ns-1 -E "^super-.*"
@@ -194,7 +197,7 @@ See the [release](https://github.com/kskumgk63/kubectl-secret-data/releases) pag
 #### Linux
 
 ```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.1.0/kubectl-secret-data_0.1.0_Linux_arm64.tar.gz
+curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.2.0/kubectl-secret-data_0.2.0_Linux_arm64.tar.gz
 tar -xvf kubectl-secret-data.tar.gz
 mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 ```
@@ -202,7 +205,7 @@ mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 #### OSX
 
 ```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.1.0/kubectl-secret-data_0.1.0_Darwin_arm64.tar.gz
+curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.2.0/kubectl-secret-data_0.2.0_Darwin_arm64.tar.gz
 tar -xvf kubectl-secret-data.tar.gz
 mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 ```
