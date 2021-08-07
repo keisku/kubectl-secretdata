@@ -36,20 +36,22 @@ func newCmd() *cobra.Command {
 }
 
 type options struct {
-	Namespace    string
-	KubeContext  string
-	KubeConfing  string
-	Cluster      string
-	Output       string
-	Regex        string
-	AllNamespace bool
+	Namespace       string
+	MultiNamespaces string
+	KubeContext     string
+	KubeConfing     string
+	Cluster         string
+	Output          string
+	Regex           string
+	AllNamespace    bool
 }
 
 func newOptions() options {
 	return options{
-		Namespace:    "",
-		Output:       "yaml",
-		AllNamespace: false,
+		Namespace:       "",
+		MultiNamespaces: "",
+		Output:          "yaml",
+		AllNamespace:    false,
 	}
 }
 
@@ -68,7 +70,8 @@ func (o *options) toKubectlOptions() []string {
 }
 
 func (o *options) parseFlags(cmd *cobra.Command) {
-	cmd.PersistentFlags().StringVarP(&o.Namespace, "namespace", "n", o.Namespace, `The namespaces where secrets exist. You can set multiple namespaces separated by ","`)
+	cmd.PersistentFlags().StringVarP(&o.Namespace, "namespace", "n", o.Namespace, "The namespaces where secrets exist")
+	cmd.PersistentFlags().StringVarP(&o.MultiNamespaces, "multi-namespaces", "m", o.MultiNamespaces, `The multi namespacess separated by "," where secrets exist.`)
 	cmd.PersistentFlags().StringVar(&o.KubeContext, "context", o.KubeContext, "The name of the kubeconfig cluster to use")
 	cmd.PersistentFlags().StringVar(&o.Cluster, "cluster", o.Cluster, "The name of the kubeconfig context to use")
 	cmd.PersistentFlags().StringVar(&o.KubeConfing, "kubeconfig", o.KubeConfing, "Path to the kubeconfig file to use for CLI requests")

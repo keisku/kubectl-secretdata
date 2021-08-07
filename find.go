@@ -111,7 +111,7 @@ func secretCommands(ctx context.Context, name string, opt options) ([]*exec.Cmd,
 			ns = append(ns, n.Name)
 		}
 	} else {
-		ns = strings.Split(opt.Namespace, ",")
+		ns = strings.Split(opt.MultiNamespaces, ",")
 	}
 	cmds := make([]*exec.Cmd, len(ns))
 	for i, n := range ns {
