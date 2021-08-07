@@ -6,7 +6,6 @@ before:
 
 builds:
 - id: kubectl-secret-data
-  main: ./main.go
   binary: kubectl-secret-data
   ldflags:
     - -s -w
