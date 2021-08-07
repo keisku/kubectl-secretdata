@@ -196,7 +196,7 @@ The commands here show `amd64` versions, `386` versions are available in the rel
 #### Linux
 
 ```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.1.0/kubectl-secret-data_0.1.0_linux_amd64.tar.gz
+curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.1.0/kubectl-secret-data_0.1.0_Linux_arm64.tar.gz
 tar -xvf kubectl-secret-data.tar.gz
 mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 ```
@@ -204,7 +204,7 @@ mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 #### OSX
 
 ```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.1.0/kubectl-secret-data_0.1.0_darwin_amd64.tar.gz
+curl -L -o kubectl-secret-data.tar.gz https://github.com/kskumgk63/kubectl-secret-data/releases/download/v0.1.0/kubectl-secret-data_0.1.0_Darwin_arm64.tar.gz
 tar -xvf kubectl-secret-data.tar.gz
 mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 ```
