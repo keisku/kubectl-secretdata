@@ -3,8 +3,8 @@
 ## What is it?
 
 This is a `kubectl` plugin for finding decoded secret data.
-Since `kubectl` only outputs base64-encoded secrets, it makes it difficult to check the secret value.
-It helps finding a decoded secret data you want with productive search flags.
+Since `kubectl` outputs base64-encoded secrets basically, it makes it difficult to check the secret value. And searching secrets also is difficult.
+This CLI helps checking secret value and finding a decoded secret data you want with productive search flags.
 
 ## Usage
 
