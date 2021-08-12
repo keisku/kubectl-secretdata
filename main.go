@@ -43,7 +43,7 @@ type options struct {
 	Cluster         string
 	Output          string
 	Regex           string
-	AllNamespace    bool
+	AllNamespaces   bool
 }
 
 func newOptions() options {
@@ -51,7 +51,7 @@ func newOptions() options {
 		Namespace:       "",
 		MultiNamespaces: "",
 		Output:          "yaml",
-		AllNamespace:    false,
+		AllNamespaces:   false,
 	}
 }
 
@@ -77,5 +77,5 @@ func (o *options) parseFlags(cmd *cobra.Command) {
 	cmd.PersistentFlags().StringVar(&o.KubeConfing, "kubeconfig", o.KubeConfing, "Path to the kubeconfig file to use for CLI requests")
 	cmd.PersistentFlags().StringVarP(&o.Output, "output", "o", o.Output, "The format of the result")
 	cmd.PersistentFlags().StringVarP(&o.Regex, "regex", "E", o.Regex, "The regular expression of secret name")
-	cmd.PersistentFlags().BoolVarP(&o.AllNamespace, "all-namespace", "A", o.AllNamespace, "If present, find secrets from all namespaces")
+	cmd.PersistentFlags().BoolVarP(&o.AllNamespaces, "all-namespaces", "A", o.AllNamespaces, "If present, find secrets from all namespaces")
 }
