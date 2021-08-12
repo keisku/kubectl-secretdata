@@ -15,7 +15,7 @@ Usage:
   kubectl-secret-data [flags]
 
 Flags:
-  -A, --all-namespace             If present, find secrets from all namespaces
+  -A, --all-namespaces            If present, find secrets from all namespaces
       --cluster string            The name of the kubeconfig context to use
       --context string            The name of the kubeconfig cluster to use
   -h, --help                      help for kubectl-secret-data
