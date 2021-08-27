@@ -101,7 +101,7 @@ func secretCommands(ctx context.Context, name string, opt options) ([]*exec.Cmd,
 	if name != "" {
 		return []*exec.Cmd{kubectlGetSecret(ctx, append([]string{name, "-n", opt.Namespace}, o...)...)}, nil
 	}
-	var ns []string
+	ns := []string{opt.Namespace}
 	if opt.AllNamespaces {
 		namespaecs, err := getAllNamespaces(ctx)
 		if err != nil {
@@ -110,8 +110,9 @@ func secretCommands(ctx context.Context, name string, opt options) ([]*exec.Cmd,
 		for _, n := range namespaecs {
 			ns = append(ns, n.Name)
 		}
-	} else {
-		ns = strings.Split(opt.MultiNamespaces, ",")
+	}
+	if len(opt.MultiNamespaces) != 0 {
+		ns = append(ns, strings.Split(opt.MultiNamespaces, ",")...)
 	}
 	cmds := make([]*exec.Cmd, len(ns))
 	for i, n := range ns {
