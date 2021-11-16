@@ -103,11 +103,11 @@ func secretCommands(ctx context.Context, name string, opt options) ([]*exec.Cmd,
 	}
 	ns := []string{opt.Namespace}
 	if opt.AllNamespaces {
-		namespaecs, err := getAllNamespaces(ctx)
+		namespaces, err := getAllNamespaces(ctx)
 		if err != nil {
 			return nil, err
 		}
-		for _, n := range namespaecs {
+		for _, n := range namespaces {
 			ns = append(ns, n.Name)
 		}
 	}
