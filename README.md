@@ -197,7 +197,7 @@ See the [release](https://github.com/kei6u/kubectl-secret-data/releases) page fo
 #### Linux
 
 ```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kei6u/kubectl-secret-data/releases/download/v0.3.1/kubectl-secret-data_0.3.1_Linux_arm64.tar.gz
+curl -L -o kubectl-secret-data.tar.gz https://github.com/kei6u/kubectl-secret-data/releases/download/v0.3.2/kubectl-secret-data_0.3.2_Linux_arm64.tar.gz
 tar -xvf kubectl-secret-data.tar.gz
 mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 ```
@@ -205,7 +205,7 @@ mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 #### OSX
 
 ```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kei6u/kubectl-secret-data/releases/download/v0.3.1/kubectl-secret-data_0.3.1_Darwin_arm64.tar.gz
+curl -L -o kubectl-secret-data.tar.gz https://github.com/kei6u/kubectl-secret-data/releases/download/v0.3.2/kubectl-secret-data_0.3.2_Darwin_arm64.tar.gz
 tar -xvf kubectl-secret-data.tar.gz
 mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
 ```
