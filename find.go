@@ -18,20 +18,20 @@ func run(ctx context.Context, name string, opt options) error {
 	if err != nil {
 		return err
 	}
-	if opt.Regex != "" {
-		secrets := make([]v1.Secret, 0, len(ss))
-		for _, s := range ss {
-			match, err := regexp.MatchString(opt.Regex, s.Name)
-			if err != nil {
-				return err
-			}
-			if match {
-				secrets = append(secrets, s)
-			}
-		}
-		return printSecrets(secrets, opt.Output)
+	if opt.Regex == "" {
+		return printSecrets(ss, opt.Output)
 	}
-	return printSecrets(ss, opt.Output)
+	secrets := make([]v1.Secret, 0, len(ss))
+	for _, s := range ss {
+		match, err := regexp.MatchString(opt.Regex, s.Name)
+		if err != nil {
+			return err
+		}
+		if match {
+			secrets = append(secrets, s)
+		}
+	}
+	return printSecrets(secrets, opt.Output)
 }
 
 func findSecrets(ctx context.Context, name string, opt options) ([]v1.Secret, error) {
