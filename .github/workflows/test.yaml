@@ -2,7 +2,7 @@ name: test
 on:
   push:
     branches:
-      - "main"
+      - main
   pull_request: {}
 jobs:
   test:
@@ -11,5 +11,7 @@ jobs:
         uses: actions/checkout@v2
       - name: setup go
         uses: actions/setup-go@v2
+      - name: vet
+        run: go vet ./...
       - name: test
         run: go test -v ./...
