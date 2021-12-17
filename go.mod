@@ -1,4 +1,4 @@
-module github.com/kskumgk63/kubectl-secret-data
+module github.com/kei6u/kubectl-secret-data
 
 go 1.16
 
