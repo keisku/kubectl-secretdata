@@ -33,7 +33,22 @@ func TestOptions_Run(t *testing.T) {
 				Regex:         "^secret[0-9]$",
 				Output:        "json",
 			},
-			want: `{"test1":{"secret1":{"key1":"value1","key2":"value2","key3":"value3"}},"test2":{"secret2":{"key1":"value1","key2":"value2","key3":"value3"}}}
+			want: `{
+    "test1": {
+        "secret1": {
+            "key1": "value1",
+            "key2": "value2",
+            "key3": "value3"
+        }
+    },
+    "test2": {
+        "secret2": {
+            "key1": "value1",
+            "key2": "value2",
+            "key3": "value3"
+        }
+    }
+}
 `,
 		},
 		{
@@ -42,7 +57,15 @@ func TestOptions_Run(t *testing.T) {
 				SecretName: "secret1",
 				Output:     "json",
 			},
-			want: `{"test1":{"secret1":{"key1":"value1","key2":"value2","key3":"value3"}}}
+			want: `{
+    "test1": {
+        "secret1": {
+            "key1": "value1",
+            "key2": "value2",
+            "key3": "value3"
+        }
+    }
+}
 `,
 		},
 		{

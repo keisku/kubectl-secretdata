@@ -6,6 +6,8 @@ This is a `kubectl` plugin for finding decoded secret data.
 Since `kubectl` outputs base64-encoded secrets basically, it makes it difficult to check the secret value. And searching secrets also is difficult.
 This tool helps verify the real secret value and find the secrets you want with productive search flags.
 
+![demo](./demo.png)
+
 ## Usage
 
 ```
@@ -68,7 +70,7 @@ Download the binary from [GitHub Releases](https://github.com/kei6u/kubectl-secr
 ### Linux
 
 ```shell
-curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.0/kubectl-secretdata_v1.0.0_linux_amd64.tar.gz
+curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.1/kubectl-secretdata_v1.0.1_linux_amd64.tar.gz
 tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
@@ -76,7 +78,7 @@ sudo mv kubectl-secretdata /usr/local/bin
 ### Darwin(amd64)
 
 ```shell
-curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.0/kubectl-secretdata_v1.0.0_darwin_amd64.tar.gz
+curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.1/kubectl-secretdata_v1.0.1_darwin_amd64.tar.gz
 tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
@@ -84,7 +86,7 @@ sudo mv kubectl-secretdata /usr/local/bin
 ### Darwin(arm64)
 
 ```shell
-curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.0/kubectl-secretdata_v1.0.0_darwin_arm64.tar.gz
+curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.1/kubectl-secretdata_v1.0.1_darwin_arm64.tar.gz
 tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```

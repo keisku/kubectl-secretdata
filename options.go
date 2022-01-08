@@ -183,7 +183,7 @@ func (o *Options) Run(f cmdutil.Factory) error {
 
 	switch o.Output {
 	case "json":
-		v, err := json.Marshal(secretdata)
+		v, err := json.MarshalIndent(secretdata, "", "    ")
 		if err != nil {
 			return err
 		}
