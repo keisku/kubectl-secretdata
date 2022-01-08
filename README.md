@@ -1,217 +1,106 @@
-# kubectl-secret-data
+# kubectl-secretdata
 
-## What is it?
+[![.github/workflows/go_test.yaml](https://github.com/kei6u/kubectl-secretdata/actions/workflows/go_test.yaml/badge.svg)](https://github.com/kei6u/kubectl-secretdata/actions/workflows/go_test.yaml)
 
 This is a `kubectl` plugin for finding decoded secret data.
 Since `kubectl` outputs base64-encoded secrets basically, it makes it difficult to check the secret value. And searching secrets also is difficult.
-This CLI helps checking secret value and finding a decoded secret data you want with productive search flags.
+This tool helps verify the real secret value and find the secrets you want with productive search flags.
 
 ## Usage
 
 ```
-A kubectl plugin for finding decoded secret data.
+Display decoded secret data.  Prints decoded secret data about the found
+secrets.  You can filter the list using a label selector and the --selector flag,
+or using --regex. You will only see results in your current namespace unless
+you pass --all-namespaces or --multi-namespaces.
 
 Usage:
-  kubectl-secret-data [flags]
+  secretdata [(-o|--output=json|yaml)] [NAME | -l label] ...) [flags]
+
+Examples:
+
+# List all secrets in json format
+kubectl secretdata -A -o json
+
+# List secrets in specified NAMESPACES in yaml form(default)
+kubectl secretdata -m "ns1,ns2,ns3"
+
+# List secrets which are matched with regex in specified NAMESPACE
+kubectl secretdata -n ns1 --regex "^secret[0-9]"
+
+# List secrets which are matched with labels from all namespaces
+kubectl secretdata -A --selector "key1=value1,key2=value2"
+
 
 Flags:
-  -A, --all-namespaces            If present, find secrets from all namespaces
-      --cluster string            The name of the kubeconfig context to use
-      --context string            The name of the kubeconfig cluster to use
-  -h, --help                      help for kubectl-secret-data
-      --kubeconfig string         Path to the kubeconfig file to use for CLI requests
-  -m, --multi-namespaces string   The multi namespacess separated by "," where secrets exist.
-  -n, --namespace string          The namespaces where secrets exist
-  -o, --output string             The format of the result (default "yaml")
-  -E, --regex string              The regular expression of secret name
+  -A, --all-namespaces                 If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.
+      --as string                      Username to impersonate for the operation. User could be a regular user or a service account in a namespace.
+      --as-group stringArray           Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+      --as-uid string                  UID to impersonate for the operation.
+      --cache-dir string               Default cache directory (default "/Users/keisukeumegaki/.kube/cache")
+      --certificate-authority string   Path to a cert file for the certificate authority
+      --client-certificate string      Path to a client certificate file for TLS
+      --client-key string              Path to a client key file for TLS
+      --cluster string                 The name of the kubeconfig cluster to use
+      --context string                 The name of the kubeconfig context to use
+  -h, --help                           help for secretdata
+      --insecure-skip-tls-verify       If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
+      --kubeconfig string              Path to the kubeconfig file to use for CLI requests.
+      --match-server-version           Require server version to match client version
+  -m, --multi-namespaces string        The multi namespacess separated by "," where secrets exist.
+  -n, --namespace string               If present, the namespace scope for this CLI request
+  -o, --output string                  The format of the result (default "yaml")
+      --password string                Password for basic authentication to the API server
+      --regex string                   The regular expression for secret name (default ".*")
+      --request-timeout string         The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests. (default "0")
+  -l, --selector string                Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+  -s, --server string                  The address and port of the Kubernetes API server
+      --tls-server-name string         Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used
+      --token string                   Bearer token for authentication to the API server
+      --user string                    The name of the kubeconfig user to use
+      --username string                Username for basic authentication to the API server
 ```
 
-### Example
+## Install
 
-List all secret data in `ns-1` in `yaml`(default).
+Download the binary from [GitHub Releases](https://github.com/kei6u/kubectl-secretdata/releases) and drop it in your `$PATH`.
+
+### Linux
 
 ```shell
-kubectl-secret-data -n ns-1
-# OR
-kubectl-secret-data -n ns-1 -o yaml
+curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.0/kubectl-secretdata_v1.0.0_linux_amd64.tar.gz
+tar -xvf kubectl-secretdata.tar.gz
+sudo mv kubectl-secretdata /usr/local/bin
 ```
 
-<details>
-<summary>Output</summary>
-
-```yaml
-ns-1: # Namespace
-  - private-data-a: # Secrete Name
-      password: lkiugubau # Secret Data Key
-      user: smith
-  - private-data-b:
-      password: hiahgeoawngleawngaw
-      user: bob
-  - super-private-data-a:
-      password: hoge
-      user: foo
-  - super-private-data-b:
-      password: fuga
-      user: bar
-```
-
-</details>
-
-List all secret data in `ns-1` in `json`.
+### Darwin(amd64)
 
 ```shell
-kubectl-secret-data -n ns-1 -o json
+curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.0/kubectl-secretdata_v1.0.0_darwin_amd64.tar.gz
+tar -xvf kubectl-secretdata.tar.gz
+sudo mv kubectl-secretdata /usr/local/bin
 ```
 
-<details>
-<summary>Output</summary>
-
-```json
-{
-  "ns-1": [
-    {
-      "private-data-a": {
-        "password": "lkiugubau",
-        "user": "smith"
-      }
-    },
-    {
-      "private-data-b": {
-        "password": "hiahgeoawngleawngaw",
-        "user": "bob"
-      }
-    },
-    {
-      "super-private-data-a": {
-        "password": "hoge",
-        "user": "foo"
-      }
-    },
-    {
-      "super-private-data-b": {
-        "password": "fuga",
-        "user": "bar"
-      }
-    }
-  ]
-}
-```
-
-</details>
-
-List all secret data in `ns-1` and `ns-2` in `json`.
-**You can specify multiple namespace.**
+### Darwin(arm64)
 
 ```shell
-kubectl-secret-data -m ns-1,ns-2 -o json
-#OR
-kubectl-secret-data --multi-namespaces ns-1,ns-2 -o json
-```
-
-<details>
-<summary>Output</summary>
-
-```json
-{
-  "ns-1": [
-    {
-      "private-data-a": {
-        "password": "lkiugubau",
-        "user": "smith"
-      }
-    },
-    {
-      "private-data-b": {
-        "password": "hiahgeoawngleawngaw",
-        "user": "bob"
-      }
-    },
-    {
-      "super-private-data-a": {
-        "password": "hoge",
-        "user": "foo"
-      }
-    },
-    {
-      "super-private-data-b": {
-        "password": "fuga",
-        "user": "bar"
-      }
-    }
-  ],
-  "ns-2": [
-    {
-      "important-value-x": {
-        "password": "abcd",
-        "user": "sam"
-      }
-    },
-    {
-      "important-value-y": {
-        "password": "xyz",
-        "user": "alice"
-      }
-    }
-  ]
-}
-```
-
-</details>
-
-List secret data by matching regex in `ns-1` in `json`.
-
-```shell
-kubectl-secret-data -n ns-1 -E "^super-.*"
-```
-
-<details>
-<summary>Output</summary>
-
-```json
-{
-  "ns-1": [
-    {
-      "super-private-data-a": {
-        "password": "hoge",
-        "user": "foo"
-      }
-    },
-    {
-      "super-private-data-b": {
-        "password": "fuga",
-        "user": "bar"
-      }
-    }
-  ]
-}
-```
-
-</details>
-
-## Installing
-
-### Pre-built binaries
-
-See the [release](https://github.com/kei6u/kubectl-secret-data/releases) page for the full list of pre-built assets.
-
-#### Linux
-
-```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kei6u/kubectl-secret-data/releases/download/v0.3.2/kubectl-secret-data_0.3.2_Linux_arm64.tar.gz
-tar -xvf kubectl-secret-data.tar.gz
-mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
-```
-
-#### OSX
-
-```bash
-curl -L -o kubectl-secret-data.tar.gz https://github.com/kei6u/kubectl-secret-data/releases/download/v0.3.2/kubectl-secret-data_0.3.2_Darwin_arm64.tar.gz
-tar -xvf kubectl-secret-data.tar.gz
-mv kubectl-secret-data /usr/local/bin/kubectl-secret-data
+curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.0/kubectl-secretdata_v1.0.0_darwin_arm64.tar.gz
+tar -xvf kubectl-secretdata.tar.gz
+sudo mv kubectl-secretdata /usr/local/bin
 ```
 
 ### Source
 
+```shell
+go install github.com/kei6u/kubectl-secretdata@latest
+sudo mv $GOPATH/bin/kubectl-secretdata /usr/local/bin
 ```
-go get github.com/kei6u/kubectl-secret-data
+
+### Validation
+
+Validate if `kubectl secretdata` can be executed.
+[The Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/#using-a-plugin) explains how to use a plugin.
+
+```bash
+kubectl secretdata --help
 ```

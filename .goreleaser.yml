@@ -1,33 +1,27 @@
-release:
-
 before:
   hooks:
-    - go mod tidy
-
+  - go mod download
 builds:
-- id: kubectl-secret-data
-  binary: kubectl-secret-data
-  ldflags:
-    - -s -w
-    - -X main.Version={{.Version}}
+- id: kubectl-secretdata
+  binary: kubectl-secretdata
+  env:
+  - CGO_ENABLED=0
   goos:
-    - windows
-    - darwin
-    - linux
+  - linux
+  - darwin
+  - windows
   goarch:
-    - arm64
-    - amd64
-    - ppc64le
+  - amd64
+  - arm64
+  ignore:
+  - goos: windows
+    goarch: arm64
 
 archives:
 - builds:
-  - kubectl-secret-data
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    amd64: x86_64
+  - kubectl-secretdata
+  name_template: "{{ .ProjectName }}_{{ .Tag }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+  wrap_in_directory: "false"
   format: tar.gz
-  format_overrides:
-    - goos: windows
-      format: zip
+  files:
+  - LICENSE
