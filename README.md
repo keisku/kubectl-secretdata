@@ -2,11 +2,14 @@
 
 [![.github/workflows/go_test.yaml](https://github.com/kei6u/kubectl-secretdata/actions/workflows/go_test.yaml/badge.svg)](https://github.com/kei6u/kubectl-secretdata/actions/workflows/go_test.yaml)
 
-This is a `kubectl` plugin for finding decoded secret data.
-Since `kubectl` outputs base64-encoded secrets basically, it makes it difficult to check the secret value. And searching secrets also is difficult.
-This tool helps verify the real secret value and find the secrets you want with productive search flags.
+This plugin provides functions to view decoded Secret data and helpful flags such as regular expression, selecting multiple namespaces, label selectors, etc.
 
 ![demo](./demo.png)
+
+## Motivation
+
+- `kubectl get secret` outputs base64-encoded Secret. It is not easy to verify the real value.
+- Wanted functions like regular expression, selecting multiple namespaces to list up Secret data.
 
 ## Usage
 
