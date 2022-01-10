@@ -1,0 +1,46 @@
+apiVersion: krew.googlecontainertools.github.com/v1alpha2
+kind: Plugin
+metadata:
+  name: secretdata
+spec:
+  version: {{ .TagName }}
+  homepage: https://github.com/kei6u/kubectl-secretdata
+  shortDescription: A kubectl plugin for finding decoded secret data with productive search flags
+  description: |
+    This is a kubectl plugin for finding decoded secret data.
+    Since kubectl outputs base64-encoded secrets basically,
+    it makes it difficult to check the secret value.
+    And searching secrets also is difficult. This tool helps
+    verify the real secret value and find the secrets
+    you want with productive search flags.
+  platforms:
+  - selector:
+      matchLabels:
+        os: darwin
+        arch: amd64
+    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_darwin_amd64.tar.gz" .TagName }}
+    bin: kubectl-secretdata
+  - selector:
+      matchLabels:
+        os: darwin
+        arch: arm64
+    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_darwin_arm64.tar.gz" .TagName }}
+    bin: kubectl-secretdata
+  - selector:
+      matchLabels:
+        os: linux
+        arch: amd64
+    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_linux_amd64.tar.gz" .TagName }}
+    bin: kubectl-secretdata
+  - selector:
+      matchLabels:
+        os: linux
+        arch: arm64
+    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_linux_arm64.tar.gz" .TagName }}
+    bin: kubectl-secretdata
+  - selector:
+      matchLabels:
+        os: windows
+        arch: amd64
+    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_windows_amd64.tar.gz" .TagName }}
+    bin: kubectl-secretdata.exe

@@ -66,11 +66,23 @@ Flags:
       --username string                Username for basic authentication to the API server
 ```
 
-## Install
+## Installation
+
+### Krew
+
+Use [krew](https://krew.sigs.k8s.io/) plugin manager to install.
+See [the guide](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) to install [krew](https://krew.sigs.k8s.io/).
+
+```bash
+kubectl krew install secretdata
+kubectl secretdata --help
+```
+
+### Download the binary
 
 Download the binary from [GitHub Releases](https://github.com/kei6u/kubectl-secretdata/releases) and drop it in your `$PATH`.
 
-### Linux
+#### Linux
 
 ```shell
 curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.2/kubectl-secretdata_v1.0.2_linux_amd64.tar.gz
@@ -78,7 +90,7 @@ tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
 
-### Darwin(amd64)
+#### Darwin(amd64)
 
 ```shell
 curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.2/kubectl-secretdata_v1.0.2_darwin_amd64.tar.gz
@@ -86,7 +98,7 @@ tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
 
-### Darwin(arm64)
+#### Darwin(arm64)
 
 ```shell
 curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.2/kubectl-secretdata_v1.0.2_darwin_arm64.tar.gz
@@ -94,18 +106,18 @@ tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
 
-### Source
+#### Source
 
 ```shell
 go install github.com/kei6u/kubectl-secretdata@latest
 sudo mv $GOPATH/bin/kubectl-secretdata /usr/local/bin
 ```
 
-### Validation
+#### Validation
 
 Validate if `kubectl secretdata` can be executed.
 [The Kubernetes documentation](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/#using-a-plugin) explains how to use a plugin.
 
-```bash
+```shell
 kubectl secretdata --help
 ```
