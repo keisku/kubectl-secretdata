@@ -213,7 +213,11 @@ func getSecretData(obj runtime.Object) (map[string]string, error) {
 		if !ok {
 			return nil, fmt.Errorf("failed to convert runtime.Object to *unstructured.Unstructured: actual type is %s", reflect.TypeOf(obj))
 		}
-		m := u.Object["data"].(map[string]interface{})
+		m, ok := u.Object["data"].(map[string]interface{})
+		if !ok {
+			// This case means that Secret has no data.
+			return nil, nil
+		}
 		data := make(map[string]string, len(m))
 		for k, v := range m {
 			b, err := base64.StdEncoding.DecodeString(v.(string))
