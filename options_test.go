@@ -155,6 +155,7 @@ test1:
     key2: value2
     key3: value3
 test2:
+  nodata: null
   privatevalue2:
     key1: value1
   secret2:
@@ -340,6 +341,19 @@ func newRuntimeObject(t *testing.T) runtime.Object {
 						"data": map[string]interface{}{
 							"key1": []byte("value1"),
 						},
+					},
+				},
+			},
+			{
+				Object: &unstructured.Unstructured{
+					Object: map[string]interface{}{
+						"metadata": map[string]interface{}{
+							"namespace": "test2",
+							"name":      "nodata",
+						},
+						"kind":       "Secret",
+						"apiVersion": "v1",
+						"data":       nil,
 					},
 				},
 			},
