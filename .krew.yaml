@@ -4,7 +4,7 @@ metadata:
   name: secretdata
 spec:
   version: {{ .TagName }}
-  homepage: https://github.com/kei6u/kubectl-secretdata
+  homepage: https://github.com/keisku/kubectl-secretdata
   shortDescription: Viewing decoded Secret data with search flags
   description: |
     This plugin provides functions to view decoded Secret data and helpful flags
@@ -14,29 +14,29 @@ spec:
       matchLabels:
         os: darwin
         arch: amd64
-    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_darwin_amd64.tar.gz" .TagName }}
+    {{addURIAndSha "https://github.com/keisku/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_darwin_amd64.tar.gz" .TagName }}
     bin: kubectl-secretdata
   - selector:
       matchLabels:
         os: darwin
         arch: arm64
-    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_darwin_arm64.tar.gz" .TagName }}
+    {{addURIAndSha "https://github.com/keisku/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_darwin_arm64.tar.gz" .TagName }}
     bin: kubectl-secretdata
   - selector:
       matchLabels:
         os: linux
         arch: amd64
-    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_linux_amd64.tar.gz" .TagName }}
+    {{addURIAndSha "https://github.com/keisku/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_linux_amd64.tar.gz" .TagName }}
     bin: kubectl-secretdata
   - selector:
       matchLabels:
         os: linux
         arch: arm64
-    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_linux_arm64.tar.gz" .TagName }}
+    {{addURIAndSha "https://github.com/keisku/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_linux_arm64.tar.gz" .TagName }}
     bin: kubectl-secretdata
   - selector:
       matchLabels:
         os: windows
         arch: amd64
-    {{addURIAndSha "https://github.com/kei6u/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_windows_amd64.tar.gz" .TagName }}
+    {{addURIAndSha "https://github.com/keisku/kubectl-secretdata/releases/download/{{ .TagName }}/kubectl-secretdata_{{ .TagName }}_windows_amd64.tar.gz" .TagName }}
     bin: kubectl-secretdata.exe

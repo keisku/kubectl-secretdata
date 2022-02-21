@@ -1,6 +1,6 @@
 # kubectl-secretdata
 
-[![.github/workflows/go_test.yaml](https://github.com/kei6u/kubectl-secretdata/actions/workflows/go_test.yaml/badge.svg)](https://github.com/kei6u/kubectl-secretdata/actions/workflows/go_test.yaml)
+[![.github/workflows/go_test.yaml](https://github.com/keisku/kubectl-secretdata/actions/workflows/go_test.yaml/badge.svg)](https://github.com/keisku/kubectl-secretdata/actions/workflows/go_test.yaml)
 
 This plugin provides functions to view decoded Secret data and helpful flags such as regular expression, selecting multiple namespaces, label selectors, etc.
 
@@ -80,12 +80,12 @@ kubectl secretdata --help
 
 ### Download the binary
 
-Download the binary from [GitHub Releases](https://github.com/kei6u/kubectl-secretdata/releases) and drop it in your `$PATH`.
+Download the binary from [GitHub Releases](https://github.com/keisku/kubectl-secretdata/releases) and drop it in your `$PATH`.
 
 #### Linux
 
 ```shell
-curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.4/kubectl-secretdata_v1.0.4_linux_amd64.tar.gz
+curl -L -o kubectl-secretdata.tar.gz https://github.com/keisku/kubectl-secretdata/releases/download/v1.0.4/kubectl-secretdata_v1.0.4_linux_amd64.tar.gz
 tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
@@ -93,7 +93,7 @@ sudo mv kubectl-secretdata /usr/local/bin
 #### Darwin(amd64)
 
 ```shell
-curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.4/kubectl-secretdata_v1.0.4_darwin_amd64.tar.gz
+curl -L -o kubectl-secretdata.tar.gz https://github.com/keisku/kubectl-secretdata/releases/download/v1.0.4/kubectl-secretdata_v1.0.4_darwin_amd64.tar.gz
 tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
@@ -101,7 +101,7 @@ sudo mv kubectl-secretdata /usr/local/bin
 #### Darwin(arm64)
 
 ```shell
-curl -L -o kubectl-secretdata.tar.gz https://github.com/kei6u/kubectl-secretdata/releases/download/v1.0.4/kubectl-secretdata_v1.0.4_darwin_arm64.tar.gz
+curl -L -o kubectl-secretdata.tar.gz https://github.com/keisku/kubectl-secretdata/releases/download/v1.0.4/kubectl-secretdata_v1.0.4_darwin_arm64.tar.gz
 tar -xvf kubectl-secretdata.tar.gz
 sudo mv kubectl-secretdata /usr/local/bin
 ```
@@ -109,7 +109,7 @@ sudo mv kubectl-secretdata /usr/local/bin
 #### Source
 
 ```shell
-go install github.com/kei6u/kubectl-secretdata@latest
+go install github.com/keisku/kubectl-secretdata@latest
 sudo mv $GOPATH/bin/kubectl-secretdata /usr/local/bin
 ```
 
