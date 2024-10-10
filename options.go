@@ -115,7 +115,7 @@ func (o *Options) Complete(f cmdutil.Factory, args []string) error {
 
 	switch nTrue(o.Namespace != "", o.AllNamespaces, o.MultiNamespacesString != "") {
 	case 0:
-		return fmt.Errorf("must select at least a namespace")
+		o.Namespace = "default"
 	case 2, 3:
 		return fmt.Errorf("must choose one option to use for selecting namespace")
 	}
